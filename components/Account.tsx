@@ -42,7 +42,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
 
   if (typeof account !== 'string') {
     return (
-      <div>
+      <div className="relative cursor-pointer flex items-center gap-x-4 rounded-full py-1 px-4 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
         {isWeb3Available ? (
           <button
             disabled={connecting}

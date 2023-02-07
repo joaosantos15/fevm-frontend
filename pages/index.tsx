@@ -13,6 +13,7 @@ import { Dialog } from '@headlessui/react'
 import ETHBalance from '../components/ETHBalance'
 import { Fragment } from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import TokenBalance from '../components/TokenBalance'
 import { Transition } from '@headlessui/react'
@@ -22,8 +23,6 @@ import useDealRewarderContract from '../hooks/useDealRewarderContract'
 import useEagerConnect from '../hooks/useEagerConnect'
 import { useWeb3React } from '@web3-react/core'
 
-const DAI_TOKEN_ADDRESS = '0x6b175474e89094c44da98b954eedeac495271d0f'
-
 function Home() {
   const { account, library } = useWeb3React()
 
@@ -32,7 +31,7 @@ function Home() {
   const isConnected = typeof account === 'string' && !!library
 
   const dealRewarderContract = useDealRewarderContract(
-    '0xF7bCb8F53f62D89c40ED92a1e8593384271e6EB4'
+    '0x55c5682ddBB392a9fF40F55FC33ea9c56fB29C25'
   )
   console.log(dealRewarderContract)
   const blockNumber = useBlockNumber()
@@ -54,18 +53,11 @@ function Home() {
     console.log(':)', blockNumber)
   }, [dealRewarderContract])
 
-  const [cid, setCID]: [string, any] = useState()
-  const [size, setSize]: [number, any] = useState()
-  const [lengthInDays, setLengthInDays]: [number, any] = useState()
   const [showSlider, setShowSlider] = useState(false)
 
   const [contractAddress, setContractAddress] = useState()
 
-  const handleAddCID = () => {
-    const cidHexRaw = new CID(cid).toString('base16').substring(1)
-    const cidHex = '0x00' + cidHexRaw
-    console.log('Hex bytes are:', cidHex)
-  }
+
 
   return (
     <div>
@@ -138,16 +130,16 @@ function Home() {
             <div className="flex">
               <Account triedToEagerConnect={triedToEagerConnect} />
             </div>
-            <h1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <div className='grid grid-flow-col mt-10 justify-start'>
+            <h1 className=" max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Click{' '}
-              <span className="ml-4 font-[monospace] text-gray-500">F5</span>
             </h1>
+            <Image className='mt-2 ml-4' src="/logo.svg" alt="logo" width="50" height="50" />
+            </div>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Filecoin deals are temporary, but they don't have to be. F5
-              enables the continued refreshing of storage deals. Storage
-              providers
+              Filecoin deals are temporary, but they don't have to be. F5 is a smart-contract based primitive that incentivises renewal of Filecoin storage deals. And it's as simple as hitting the F5 refresh key.
             </p>
-            <div className="mt-10 flex items-center gap-x-6">
+            {/* <div className="mt-10 flex items-center gap-x-6">
               <a
                 href="#"
                 className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -160,7 +152,7 @@ function Home() {
               >
                 Learn more <span aria-hidden="true">→</span>
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
             <div className="grid  ">
@@ -168,7 +160,7 @@ function Home() {
                 onClick={() => setShowSlider(true)}
                 className="place-self-center	 rounded-md hover:bg-gray-300 text-gray-500 border-gray-500 border-4 h-[200px] w-[200px] justify-center text-8xl font-[monospace]"
               >
-                F5
+                <Image className='m-auto' src="/logo.svg" alt="logo" width="80" height="80" />
               </button>
             </div>
           </div>
@@ -252,7 +244,7 @@ export const Slider = ({
   // )
 
   const dealRewarderContract = useDealRewarderContract(
-    '0xa7a11bDdA6E4e1798a33719940eb624775d9d233'
+    '0x55c5682ddBB392a9fF40F55FC33ea9c56fB29C25'
   )
 
   useState(() => {
@@ -504,7 +496,7 @@ export const Slider = ({
                               </div>
                             </div>
                             <hr className="border-gray-200" />
-                            <div className="space-between sm:space-between flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0">
+                            {/* <div className="space-between sm:space-between flex flex-col space-y-4 sm:flex-row sm:items-center sm:space-y-0">
                               <div className="flex-1">
                                 <a
                                   href="#"
@@ -529,7 +521,7 @@ export const Slider = ({
                                   <span>Learn more about sharing</span>
                                 </a>
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                         </fieldset>
                       </div>
